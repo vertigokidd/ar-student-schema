@@ -21,9 +21,9 @@ class Student < ActiveRecord::Base
   end
   
   def validate_phone
-    unless phone.count('1234567890') == 10                                                                                              = 10
+    unless phone.count('1234567890') >= 10
       errors.add(:base, 'invalid phone number')
     end
   end
-
+  
 end
