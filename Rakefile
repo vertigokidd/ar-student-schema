@@ -14,6 +14,7 @@ desc "seed the database"
 task "db:seed" do
 	require_relative 'app/models/student.rb'
   require_relative 'app/models/teacher.rb'
+  require_relative 'app/models/subject.rb'
 
 	100.times do
 	  Student.create :first_name => Faker::Name.first_name,
@@ -28,6 +29,14 @@ task "db:seed" do
     Teacher.create :first_name => Faker::Name.first_name,
                    :last_name => Faker::Name.last_name,
                    :email    => Faker::Internet.email
+  end
+
+  school_subjects = ['history', 'math', 'science', 'english']
+
+  500.times do
+    Subject.create :teacher_id => rand(1..9),
+                   :student_id => rand(1..100),
+                   :subject => school_subjects.sample
   end
 
 # teacher = Teacher.create(first_name: 'Thelma', last_name: 'Roberts', email: 'troberts@treeteacher.org')
