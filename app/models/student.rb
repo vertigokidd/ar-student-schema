@@ -2,11 +2,12 @@ require_relative '../../db/config'
 require 'date'
 
 class Student < ActiveRecord::Base
+  belongs_to :teacher
 # implement your Student model here
   validates :email, uniqueness: true
   validates :email, format: { with: /\w+@\w+.\w{2,}/, message: 'invalid email'}
   validates :age, numericality: { greater_than: 5 }
-  validate :validate_phone
+  # validate :validate_phone
 
   def name
     self.first_name + ' ' + self.last_name
